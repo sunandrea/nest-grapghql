@@ -1,0 +1,59 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Fruit {
+  id: Int!
+  name: String!
+}
+
+type Vegetable {
+  id: Int!
+  name: String!
+}
+
+type User {
+  id: Int!
+  username: String!
+  role: String!
+  passwordHash: String!
+}
+
+type Query {
+  getFruit(id: Int!): Fruit!
+  getFruits: [Fruit!]!
+  getVegetables: [Vegetable!]!
+  getVegetable(id: Int!): Vegetable!
+  user(username: String!): User
+  users: [User!]!
+}
+
+type Mutation {
+  createFruit(createFruitInput: CreateFruitInput!): Fruit!
+  deleteFruit(id: Int!): Fruit!
+  updateFruit(id: Int!, createFruitInput: CreateFruitInput!): Fruit!
+  createVegetable(createVegetableInput: CreateVegetableInput!): Vegetable!
+  updateVegetable(id: Int!, updateVegetableInput: CreateVegetableInput!): Vegetable!
+  deleteVegetable(id: Int!): Vegetable!
+  register(createUserInput: CreateUserInput!): User!
+  login(loginUserInput: LoginUserInput!): String!
+}
+
+input CreateFruitInput {
+  name: String!
+}
+
+input CreateVegetableInput {
+  name: String!
+}
+
+input CreateUserInput {
+  username: String!
+  password: String!
+  role: String!
+}
+
+input LoginUserInput {
+  username: String!
+  password: String!
+}
