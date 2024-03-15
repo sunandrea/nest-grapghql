@@ -9,45 +9,49 @@ import { RolesGuard } from 'src/auth/guards/roles.guard';
 
 @Resolver(() => Vegetable)
 export class VegetablesResolver {
-	constructor(private readonly vegetablesService: VegetablesService) {}
+  constructor(private readonly vegetablesService: VegetablesService) {}
 
-	@Mutation(() => Vegetable)
-	@Roles('VegetarianMary', 'Admin', 'FruitJohn')
-	@UseGuards(JwtAuthGuard, RolesGuard)
-	createVegetable(
-		@Args('createVegetableInput') createVegetableInput: CreateVegetableInput,
-	): Promise<Vegetable> {
-		return this.vegetablesService.create(createVegetableInput);
-	}
+  @Mutation(() => Vegetable)
+  @Roles('VegetarianMary', 'Admin', 'FruitJohn')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  async createVegetable(
+    @Args('createVegetableInput') createVegetableInput: CreateVegetableInput,
+  ): Promise<Vegetable> {
+    return await this.vegetablesService.create(createVegetableInput);
+  }
 
-	@Query(() => [Vegetable])
-	@Roles('VegetarianMary', 'Admin', 'FruitJohn')
-	@UseGuards(JwtAuthGuard, RolesGuard)
-	getVegetables() {
-		return this.vegetablesService.findAll();
-	}
+  @Query(() => [Vegetable])
+  @Roles('VegetarianMary', 'Admin', 'FruitJohn')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  async getVegetables(): Promise<Vegetable[]> {
+    return await this.vegetablesService.findAll();
+  }
 
-	@Query(() => Vegetable)
-	@Roles('VegetarianMary', 'Admin', 'FruitJohn')
-	@UseGuards(JwtAuthGuard, RolesGuard)
-	getVegetable(@Args('id', { type: () => Int }) id: number) {
-		return this.vegetablesService.findOne(id);
-	}
+  @Query(() => Vegetable)
+  @Roles('VegetarianMary', 'Admin', 'FruitJohn')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  async getVegetable(
+    @Args('id', { type: () => Int }) id: number,
+  ): Promise<Vegetable> {
+    return await this.vegetablesService.findOne(id);
+  }
 
-	@Mutation(() => Vegetable)
-	@Roles('VegetarianMary', 'Admin')
-	@UseGuards(JwtAuthGuard, RolesGuard)
-	updateVegetable(
-		@Args('id', { type: () => Int }) id: number,
-		@Args('updateVegetableInput') updateVegetableInput: CreateVegetableInput,
-	) {
-		return this.vegetablesService.updateOne(id, updateVegetableInput);
-	}
+  @Mutation(() => Vegetable)
+  @Roles('VegetarianMary', 'Admin')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  async updateVegetable(
+    @Args('id', { type: () => Int }) id: number,
+    @Args('updateVegetableInput') updateVegetableInput: CreateVegetableInput,
+  ) {
+    return await this.vegetablesService.updateOne(id, updateVegetableInput);
+  }
 
-	@Mutation(() => Vegetable)
-	@Roles('VegetarianMary', 'Admin')
-	@UseGuards(JwtAuthGuard, RolesGuard)
-	deleteVegetable(@Args('id', { type: () => Int }) id: number) {
-		return this.vegetablesService.deleteOne(id);
-	}
+  @Mutation(() => Vegetable)
+  @Roles('VegetarianMary', 'Admin')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  async deleteVegetable(
+    @Args('id', { type: () => Int }) id: number,
+  ): Promise<Vegetable> {
+    return await this.vegetablesService.deleteOne(id);
+  }
 }

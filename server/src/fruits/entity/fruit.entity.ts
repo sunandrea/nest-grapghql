@@ -4,11 +4,11 @@ import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
 @ObjectType()
 export class Fruit {
-	@PrimaryGeneratedColumn()
-	@Field(() => Int)
-	id: number;
+  @PrimaryGeneratedColumn()
+  @Field(() => Int)
+  id: number;
 
-	@Column()
-	@Field()
-	name: string;
+  @Column()
+  @Field()
+  name: string;
 }

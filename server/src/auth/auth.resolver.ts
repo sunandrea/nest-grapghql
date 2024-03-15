@@ -6,18 +6,18 @@ import { LoginUserInput } from './dto/login-user.input';
 
 @Resolver(() => User)
 export class AuthResolver {
-	constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {}
 
-	@Mutation(() => User)
-	async register(@Args('createUserInput') dto: CreateUserInput): Promise<User> {
-		const user = await this.authService.register(dto);
+  @Mutation(() => User)
+  async register(@Args('createUserInput') dto: CreateUserInput): Promise<User> {
+    const user = await this.authService.register(dto);
 
-		return user;
-	}
+    return user;
+  }
 
-	@Mutation(() => String)
-	async login(@Args('loginUserInput') dto: LoginUserInput) {
-		const username = await this.authService.validateUser(dto);
-		return this.authService.login(username);
-	}
+  @Mutation(() => String)
+  async login(@Args('loginUserInput') dto: LoginUserInput) {
+    const username = await this.authService.validateUser(dto);
+    return this.authService.login(username);
+  }
 }

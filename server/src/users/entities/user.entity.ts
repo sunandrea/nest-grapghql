@@ -5,22 +5,22 @@ import { UserRole } from '../enums/user-role.enum';
 @Entity()
 @ObjectType()
 export class User {
-	@PrimaryGeneratedColumn()
-	@Field(() => Int)
-	id: number;
+  @PrimaryGeneratedColumn()
+  @Field(() => Int)
+  id: number;
 
-	@Field()
-	@Column({ unique: true })
-	username: string;
+  @Field()
+  @Column({ unique: true })
+  username: string;
 
-	@Field(() => String)
-	@Column({
-		type: 'text',
-		enum: UserRole,
-		default: UserRole.FruitJohn,
-	})
-	role: string;
-	@Field()
-	@Column()
-	passwordHash: string;
+  @Field(() => String)
+  @Column({
+    type: 'text',
+    enum: UserRole,
+    default: UserRole.FRUIT_JOHN,
+  })
+  role: string;
+  @Field()
+  @Column()
+  passwordHash: string;
 }

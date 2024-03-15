@@ -3,7 +3,7 @@ import { IsAlpha } from 'class-validator';
 
 @InputType()
 export class CreateFruitInput {
-	@IsAlpha()
-	@Field()
-	name: string;
+  @IsAlpha()
+  @Field()
+  name: string;
 }
